@@ -1,0 +1,4 @@
+cosine=0.45226701686664544	rank=1	qid=1	rel=1	Classical music may never be the most popular music 
+cosine=0.10206207261596577	rank=1	qid=2	rel=1	Climate change and energy use are two sides of the same coin. 
+cosine=0.50709255283711	rank=1	qid=3	rel=1	The best mirror is an old friend 
+MRR=1.0
