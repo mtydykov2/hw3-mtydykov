@@ -176,8 +176,10 @@ public class RetrievalEvaluator extends CasConsumer_ImplBase {
   private void computeCosineSimilarityForAllQueries(PrintWriter outputWriter,
           HashMap<Integer, Integer> queryIdToIndex,
           HashMap<Integer, ArrayList<Integer>> queryIdToDocs, HashSet<Integer> queryIds) {
+    ArrayList<Integer> queryIdList = new ArrayList<Integer>(queryIds);
+    Collections.sort(queryIdList);
     // compute the cosine similarity measure
-    for (int queryId : queryIds) {
+    for (int queryId : queryIdList) {
       // get the term vector for the query
       Map<String, Integer> queryMap = termVectors.get(queryIdToIndex.get(queryId));
       HashMap<Integer, Double> docToCosineSim = new HashMap<Integer, Double>();
