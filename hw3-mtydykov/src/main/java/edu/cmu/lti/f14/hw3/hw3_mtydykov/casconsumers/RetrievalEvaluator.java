@@ -162,7 +162,7 @@ public class RetrievalEvaluator extends CasConsumer_ImplBase {
     // compute MRR over the entire set of queries
     double metric_mrr = compute_mrr();
     System.out.println(" (MRR) Mean Reciprocal Rank ::" + metric_mrr);
-    outputWriter.write("MRR=" + metric_mrr);
+    outputWriter.write(String.format("MRR=%.4f",metric_mrr));
     outputWriter.close();
   }
 
@@ -203,11 +203,9 @@ public class RetrievalEvaluator extends CasConsumer_ImplBase {
       
       // store the query along with the rank of the highest relevant doc
       queryIdToHighestRank.put(queryId, rank);
-      
+      String outString = String.format("cosine=%.4f\trank=%d\tqid=%d\trel=%d\t%s\n",highestRolDocCosine,rank,queryId,relList.get(highestRelDocIndex),documentTexts.get(highestRelDocIndex));
       // write output to file
-      outputWriter.write("cosine=" + highestRolDocCosine + "\trank=" + rank + "\tqid=" + queryId
-              + "\trel=" + relList.get(highestRelDocIndex) + "\t"
-              + documentTexts.get(highestRelDocIndex) + "\n");
+      outputWriter.write(outString);
     }
   }
 
