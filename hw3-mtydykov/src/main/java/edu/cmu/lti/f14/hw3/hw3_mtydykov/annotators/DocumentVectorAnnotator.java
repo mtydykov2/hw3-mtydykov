@@ -3,6 +3,7 @@ package edu.cmu.lti.f14.hw3.hw3_mtydykov.annotators;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
+import java.util.List;
 
 import org.apache.uima.analysis_component.JCasAnnotator_ImplBase;
 import org.apache.uima.analysis_engine.AnalysisEngineProcessException;
@@ -36,8 +37,22 @@ public class DocumentVectorAnnotator extends JCasAnnotator_ImplBase {
   }
 
   /**
+   * A basic white-space tokenizer, it deliberately does not split on punctuation!
    * 
-   * @param jcas
+   * @param doc
+   *          input text
+   * @return a list of tokens.
+   */
+  List<String> tokenize0(String doc) {
+    List<String> res = new ArrayList<String>();
+    for (String s : doc.split("\\s+"))
+      res.add(s);
+    return res;
+  }
+
+  /**
+   * 
+   * @param jcas 
    * @param doc
    */
 
@@ -45,7 +60,7 @@ public class DocumentVectorAnnotator extends JCasAnnotator_ImplBase {
     // TO DO: construct a vector of tokens and update the tokenList in CAS
 
     String docText = doc.getText();
-    String[] tokens = docText.split("\\s");
+    List<String> tokens = tokenize0(docText);
     ArrayList<Token> tokenList = new ArrayList<Token>();
     HashMap<String, Integer> tokenToFreq = new HashMap<String, Integer>();
     for (String token : tokens) {

@@ -250,6 +250,17 @@ public class RetrievalEvaluator extends CasConsumer_ImplBase {
     List<Entry<Integer, Double>> list = new ArrayList<Entry<Integer, Double>>(set);
     Collections.sort(list, new Comparator<Map.Entry<Integer, Double>>() {
       public int compare(Map.Entry<Integer, Double> o1, Map.Entry<Integer, Double> o2) {
+        // same cosine similarity - rank by relevance 
+        // (which is guaranteed to be 1 or 0, since only non-query
+        // documents are in the list at this point)
+        if(o2.getValue() == o1.getValue()){
+          if(relList.get(o2.getKey()) > relList.get(o1.getKey())){
+            return 1;
+          } else if(relList.get(o2.getKey()) > relList.get(o1.getKey())){
+            return -1;
+          }
+          return 0;
+        }
         return (o2.getValue()).compareTo(o1.getValue());
       }
     });
