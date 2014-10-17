@@ -105,4 +105,8 @@
 			</plugin>
 		</plugins>
 	</build>
+	<scm>
+		<connection>scm:git:git@github.com:mtydykov2/hw3-mtydykov.git</connection>
+		<developerConnection>scm:git:git@github.com:mtydykov2/hw3-mtydykov.git</developerConnection>
+	</scm>
 </project>
